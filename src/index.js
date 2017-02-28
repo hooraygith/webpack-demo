@@ -21,6 +21,7 @@ console.log(333)
 function resolveAfter2Seconds(x) {
     return new Promise(resolve => {
         setTimeout(() => {
+        	alert('promise')
             resolve(x);
         }, 2000);
     });
@@ -44,6 +45,5 @@ class Polygon {
   }
 }
 var p = new Polygon();
-
 
 console.log(222, typeof Polygon)
