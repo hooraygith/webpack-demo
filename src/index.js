@@ -1,4 +1,4 @@
-//require('./css/main.less')
+require('./css/main.less')
 const webpack = require('./index2.js');
 
 

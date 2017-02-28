@@ -27,18 +27,16 @@ module.exports = {
             {
                 test: /\.less$/,
                 include: [srcDir],
-                use: [
-                    {loader: 'less-loader'},
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function() {
-                                return [autoprefixer]
-                            }
-                        }
-                    },
-                    {loader: 'css-loader'},{loader: 'style-loader'}
-                ]
+                loader: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style-loader',
+                    loader: "css-loader!less-loader",
+                })
+                // use: [
+                //     {loader: 'less-loader'},
+                //     {loader: 'postcss-loader'},
+                //     {loader: 'css-loader'},
+                //     {loader: 'style-loader'}
+                // ]
             },
             {
                 test: /\.(jpe?g|svg|png|gif|webp)$/,
