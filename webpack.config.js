@@ -18,18 +18,16 @@ module.exports = {
     },
 
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                include: [srcDir],
-                use: [{loader: 'babel-loader'}]
-            },
-            {
-                test: /\.less$/,
-                include: [srcDir],
-                use: ExtractTextPlugin.extract({
+        rules: [{
+            test: /\.js$/,
+            include: [srcDir],
+            use: 'babel-loader'
+        }, {
+            test: /\.less$/,
+            include: [srcDir],
+            use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    loader: "css-loader!postcss-loader!less-loader"
+                    use: "css-loader!postcss-loader!less-loader"
                 })
                 // use: [
                 //     {loader: 'less-loader'},
@@ -37,13 +35,11 @@ module.exports = {
                 //     {loader: 'css-loader'},
                 //     {loader: 'style-loader'}
                 // ]
-            },
-            {
-                test: /\.(jpe?g|svg|png|gif|webp)$/,
-                include: [srcDir],
-                use: [{loader: 'url-loader?limit=10000'}]
-            }
-        ]
+        }, {
+            test: /\.(jpe?g|svg|png|gif|webp)$/,
+            include: [srcDir],
+            use: 'url-loader?limit=10000'
+        }]
     },
     plugins: [
         // 发现webpack自带uglify的效果，其实是babili带的
@@ -60,7 +56,7 @@ module.exports = {
 
         new ExtractTextPlugin('[name]-[chunkhash:8].css'),
 
-        new HtmlWebpackPlugin({  // Also generate a test.html 
+        new HtmlWebpackPlugin({ // Also generate a test.html
             filename: 'index.html',
             template: './src/index.html'
         })
