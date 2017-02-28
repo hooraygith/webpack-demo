@@ -29,7 +29,7 @@ module.exports = {
                 include: [srcDir],
                 loader: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
-                    loader: "css-loader!less-loader",
+                    loader: "css-loader!postcss-loader!less-loader"
                 })
                 // use: [
                 //     {loader: 'less-loader'},

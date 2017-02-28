@@ -21,7 +21,6 @@ console.log(333)
 function resolveAfter2Seconds(x) {
     return new Promise(resolve => {
         setTimeout(() => {
-        	alert('Promise')
             resolve(x);
         }, 2000);
     });
