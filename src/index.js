@@ -1,12 +1,14 @@
 require('./css/main.less')
 const webpack = require('./index2.js')
 
+console.log(webpack)
+
 // test generate
 function* idMaker() {
-    var index = 0;
+    var index = 0
     while (index < 3) {
         console.log(333)
-        yield index++;
+        yield index++
     }
 }
 
@@ -21,8 +23,8 @@ function resolveAfter2Seconds(x) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(x)
-        }, 2000);
-    });
+        }, 2000)
+    })
 }
 async function add1(x) {
     var a = resolveAfter2Seconds(20)
@@ -32,7 +34,7 @@ async function add1(x) {
 
 add1(10).then(v => {
     console.log(v)
-});
+})
 
 
 // test class
@@ -45,8 +47,3 @@ class Polygon {
 var p = new Polygon()
 
 console.log(222, typeof Polygon)
-
-
-
-
-
