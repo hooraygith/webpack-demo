@@ -47,15 +47,15 @@ module.exports = {
 
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          minChunks: function (module, count) {
+            name: 'vendor',
+            minChunks: function (module, count) {
             // any required modules inside node_modules are extracted to vendor
             return (
-              module.resource &&
-              /\.js$/.test(module.resource) &&
-              module.resource.indexOf(
+                module.resource &&
+                /\.js$/.test(module.resource) &&
+                module.resource.indexOf(
                 path.join(__dirname, './node_modules')
-              ) === 0
+                ) === 0
             )
           }
         }),
@@ -63,12 +63,16 @@ module.exports = {
         // extract webpack runtime and module manifest to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated
         new webpack.optimize.CommonsChunkPlugin({
-          name: 'manifest',
-          chunks: ['vendor']
+            name: 'manifest',
+            chunks: ['vendor']
         }),
 
         // css 插入 html head
         new ExtractTextPlugin('[name]-[chunkhash:8].css'),
+        // 压缩 css
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
+        }),
 
         // js 插入 html body
         new HtmlWebpackPlugin({
