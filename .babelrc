@@ -1,6 +1,0 @@
-{
-	"presets": [
-	    ["env", {"targets": {"ie": 9}, "loose": true}]
-	],
-    "plugins": ["transform-runtime"]
-}

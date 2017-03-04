@@ -9,7 +9,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const srcDir = path.resolve(__dirname, 'src');
 
 module.exports = {
-    //context: process.cwd(),
     entry: './src/index.js',
     output: {
         path: __dirname + '/dist',
@@ -21,42 +20,30 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             include: [srcDir],
-            use: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+                "plugins": ["transform-es2015-modules-commonjs"]
+            }
         }, {
             test: /\.less$/,
             include: [srcDir],
             use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: "css-loader!postcss-loader!less-loader"
+                    use: "css-loader!less-loader"
                 })
-                // use: [
-                //     {loader: 'less-loader'},
-                //     {loader: 'postcss-loader'},
-                //     {loader: 'css-loader'},
-                //     {loader: 'style-loader'}
-                // ]
         }, {
             test: /\.(jpe?g|svg|png|gif|webp)$/,
             include: [srcDir],
-            use: 'url-loader?limit=10000'
+            use: 'url-loader'
         }]
     },
     plugins: [
-        // 发现webpack自带uglify的效果，其实是babili带的
-        // uglifyJsPlugin不能识别generate的*号
-        // new uglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // }),
 
-
-        // 会将多个入口的公共模块抽出，放进common.js
-        new CommonsChunkPlugin('common'),
-
+        // css 插入 html head
         new ExtractTextPlugin('[name]-[chunkhash:8].css'),
 
-        new HtmlWebpackPlugin({ // Also generate a test.html
+        // js 插入 html body
+        new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html'
         })

@@ -1,12 +1,11 @@
 require('./css/main.less')
 const webpack = require('./index2.js')
 
-
-
 // test generate
 function* idMaker() {
     var index = 0;
     while (index < 3) {
+        console.log(333)
         yield index++;
     }
 }
@@ -14,14 +13,13 @@ function* idMaker() {
 var gen = idMaker()
 
 
-console.log(333)
+console.log('c830 3470')
 
 
 // // test async
 function resolveAfter2Seconds(x) {
     return new Promise(resolve => {
         setTimeout(() => {
-        	alert('promise')
             resolve(x)
         }, 2000);
     });
