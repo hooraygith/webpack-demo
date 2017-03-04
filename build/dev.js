@@ -8,9 +8,18 @@ rm(path.resolve(__dirname, '../dist'), err => {
         throw err
     }
     console.log('remove dist')
-    webpack(config, (err, status) => {
+    webpack(config, (err, stats) => {
         if (err) {
             throw err
         }
+        process.stdout.write(stats.toString({
+          colors: true,
+          modules: false,
+          children: false,
+          chunks: false,
+          chunkModules: false
+        }) + '\n\n')
+
+        console.log('Build complete.\n')
     })
 })

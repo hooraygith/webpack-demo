@@ -14,9 +14,7 @@ function* idMaker() {
 
 var gen = idMaker()
 
-
 console.log('c830 3470')
-
 
 // // test async
 function resolveAfter2Seconds(x) {
@@ -35,7 +33,6 @@ async function add1(x) {
 add1(10).then(v => {
     console.log(v)
 })
-
 
 // test class
 class Polygon {
